@@ -1,0 +1,9 @@
+1. change header 
+2. change table of content numbering into chinese
+3. first chappter
+4. ack format
+2017.5.5
+1. simulation result and design methods based on root lucus method
+2. appendix 1 method of measuring dq inductance
+3. appendix 2 svpwm code
+4. 
