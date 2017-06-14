@@ -1,6 +1,6 @@
-\textit{}\chapter{永磁同步电机矢量控制}\label{ch:FOC}
+\chapter{永磁同步电机矢量控制}\label{ch:FOC}
 \section{引言}
-矢量控制可分为直接转矩控制（DTC）和磁场定向控制（FOC），直接转矩控制是通过控制定子电压从而改变定子磁通与转子磁通夹来实现转矩控制，该方法不需要坐标变换，不直接控制电流，结构简单，动态性能高。磁场定向控制是基于解耦的dq轴电流控制，d轴控制磁通，q轴控制电磁转矩，该方法需要运用坐标变换，结构比直接转矩控制复杂，但其稳态性能比直接转矩控制好，电流谐波低\cite{del2006comparison,__2008}.本文所涉及的矢量控制是磁场定向控制。本章主要介绍矢量控制基本原理、反电动势解耦、控制器参数设计方法和基于反电动势的转子位置估算方法。
+矢量控制可分为直接转矩控制（DTC）和磁场定向控制（FOC），直接转矩控制是通过控制定子电压从而改变定子磁通与转子磁通夹来实现转矩控制，该方法不需要坐标变换，不直接控制电流，结构简单，动态性能高。磁场定向控制是基于解耦的dq轴电流控制，d轴控制磁通，q轴控制电磁转矩，该方法需要运用坐标变换，结构比直接转矩控制复杂，但其稳态性能比直接转矩控制好，电流谐波低\cite{del2006comparison,__2008,casadei2002foc}.本文所涉及的矢量控制是磁场定向控制。本章主要介绍矢量控制基本原理、反电动势解耦、控制器参数设计方法和基于反电动势的转子位置估算方法。
 
 \section{矢量控制基本原理}
 根据第\ref{ch:model}章的建模，在dq坐标系下永磁同步电机的电压方程为：
@@ -31,7 +31,7 @@ T_{e}=\frac{3}{2}P\left[\lambda_{mpm}i_{q}+(L_{d}-L_{q})i_{d}i_{q}\right]
 功率因数$\cos{\varphi}=1$控制通常是为了最大化利用逆变器容量，此时电压矢量与电流矢量方向一致，电机功率因数等于1，但由于负载变化时，不能调节永磁同步电机转子励磁，使得电枢电流与电磁转矩不再保持线性关系。
 	\item 最大转矩/电流控制
 	
-在输出相同电磁转矩的情况下，减小电机电流能够降低电机绕组铜耗，降低系统成本，提高效率。对于表面贴磁型永磁同步电机，$T_{e}=\frac{3}{2}P\lambda_{mpm}i_{q}$，控制$i_{d}=0$即为最大转矩/电流控制。对于内嵌永磁体永磁同步电机，由于存在磁阻转矩，$i_{d}=0$不再是最大转矩/电流控制方式。此时，需要计算出不同工作状态下$i_{d}$和$i_{q}$特定组合，使得转矩最大而电流最小\cite{mtpa_2011,lee_mtpa_2010}。	
+在输出相同电磁转矩的情况下，减小电机电流能够降低电机绕组铜耗，降低系统成本，提高效率。对于表面贴磁型永磁同步电机，$T_{e}=\frac{3}{2}P\lambda_{mpm}i_{q}$，控制$i_{d}=0$即为最大转矩/电流控制。对于内嵌永磁体永磁同步电机，由于存在磁阻转矩，$i_{d}=0$不再是最大转矩/电流控制方式。此时，需要计算出不同工作状态下$i_{d}$和$i_{q}$特定组合，使得转矩最大而电流最小\cite{mtpa_2011,lee_mtpa_2010,huang2010maximum}。	
 \end{itemize}
 
 本文所述的矢量控制为$i_{d}=0$控制，永磁电机主磁通完全由转子永磁体提供，通过控制$i_{q}$来控制电磁转矩，此时永磁同步电机可等效为他励直流电动机。该方法控制永磁同步电机较为简单。
@@ -156,14 +156,14 @@ e_{ss}=\frac{T_{l}}{K_{p}\frac{3}{2}P\lambda_{mpm}}
 速度外环参数调节时，先调节$K_{p}$，增大$K_{p}$系统响应快速性达到要求，再调节使其能够快速消除稳态误差。
 \subsection{抗饱和PI控制器}
 前面讨论电流转速环PI参数时，均忽略了PI控制器输出限制幅值，由于实际变频器输出输出电压范围和电机最大电流有限，因此实际系统中电流内环与转速外环PI控制器输出均有限幅。控制器输出限幅值，使电机在能够保护设备，但当给定转速或者电流很大时，控制器输出饱和，但是实际转速或者电流依然小于给定，因此控制器将长时间在饱和区，这增加了系统超调，甚至可能会引起系统不稳定。
-为了解决这一问题，采用抗饱和PI控制器。其框图如图\ref{fig:antiwindup_pi}所示，输出不饱和时和传统PI控制器一样，当输出饱和时，积分器的作用会使系统更快速退出饱和状态，减小超调\cite{antiwindup,antiwindup1,anti_windup_2}。
+为了解决这一问题，采用抗饱和PI控制器。其框图如图\ref{fig:antiwindup_pi}所示，输出不饱和时和传统PI控制器一样，当输出饱和时，积分器的作用会使系统更快速退出饱和状态，减小超调\cite{antiwindup,antiwindup1}。
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{figs/antiwindup_pi.eps}
 	\caption{抗饱和PI控制器}
 	\label{fig:antiwindup_pi}
 \end{figure}
-如图\ref{fig:pi_speed_loop}所示，转速给定为1000RPM，在0.05s时加负载1Nma的转速闭环响应。a使用传统PI控制器，b使用抗饱和PI控制器。两者PI参数相同，$K_{p}=0.1$，$K_{i}=10$，a中$K_{aw}=0$，而b中$K_{aw}=12$，饱和上下限设置为$\pm 9$。由改图可知，反积分饱PI控制与传统的PI控制相比，更具优越性。其能够降低系统超调，让系统更快稳定。
+如图\ref{fig:pi_speed_loop}所示，转速给定为1000RPM，在0.05s时加负载1Nm的转速闭环响应。a使用传统PI控制器，b使用抗饱和PI控制器。两者PI参数相同，$K_{p}=0.1$，$K_{i}=10$，a中$K_{aw}=0$，而b中$K_{aw}=12$，饱和上下限设置为$\pm 9$。由改图可知，反积分饱PI控制与传统的PI控制相比，更具优越性。其能够降低系统超调，让系统更快稳定。
 \begin{figure} [h]
 	\centering%
 	\subfloat[传统PI控制器转速响应]{%
@@ -243,16 +243,16 @@ v_{q}=Ri_{q}+p\lambda_{q}+\omega_{r}\lambda_{d} \\ v_{d}=Ri_{d}+p\lambda_{d}-\om
 \lambda_{\beta}=\int (v_{\beta}-Ri_{\beta}) \mathrm{d}t
 \end{gathered}
 \end{equation}
-\subsection{积分漂移补偿\cite{drift}}
-反电动势位置估算方法中求$\alpha\beta$磁链$\bar{\lambda}_{\alpha\beta}$涉及对反电动势的积分，根据公式\ref{eq:6}可知，稳态时包含转子位置的矢量$\bar{\lambda}_{\alpha\beta}-L_{q}\bar{i}_{\alpha\beta}$的轨迹应为圆心在原点的圆。但由于电流采样会存在误差偏置，即使很小的偏置在积分器作用下也会一直方法，这导致积分计算出的$\alpha\beta$磁链带有积分漂移，如图\ref{fig:dc_removal}所示，图中$\overrightarrow{\lambda}_{L}$为上述$\bar{\lambda}_{\alpha\beta}-L_{q}\bar{i}_{\alpha\beta}$矢量，积分漂移使矢量$\overrightarrow{\lambda}_{L}$的圆心偏离原点，偏移量为$DR+jDI$。
-此时，用公式\ref{eq:7}计算的转子位置为矢量$\overrightarrow{\lambda}_{L}^{\prime}$的角$\theta_{\lambda L}^{\prime}$，真正转子位置的角度为矢量$\overrightarrow{\lambda}_{L}$的角$\theta_{\lambda L}$。因此需要找到圆心漂移量，进行补偿。
+\subsection{积分漂移补偿}
+反电动势位置估算方法中求$\alpha\beta$磁链$\bar{\lambda}_{\alpha\beta}$涉及对反电动势的积分，根据公式\ref{eq:6}可知，稳态时包含转子位置的矢量$\bar{\lambda}_{\alpha\beta}-L_{q}\bar{i}_{\alpha\beta}$的轨迹应为圆心在原点的圆。但由于电流采样会存在误差偏置，即使很小的偏置在积分器作用下也会一直放大，这导致积分计算出的$\alpha\beta$磁链带有积分漂移，如图\ref{fig:dc_removal}所示，图中$\overrightarrow{\lambda}_{L}$为上述$\bar{\lambda}_{\alpha\beta}-L_{q}\bar{i}_{\alpha\beta}$矢量，积分漂移使矢量$\overrightarrow{\lambda}_{L}$的圆心偏离原点，偏移量为$DR+jDI$。
+此时，用公式\ref{eq:7}计算的转子位置为矢量$\overrightarrow{\lambda}_{L}^{\prime}$的角$\theta_{\lambda L}^{\prime}$，真正转子位置的角度为矢量$\overrightarrow{\lambda}_{L}$的角$\theta_{\lambda L}$。因此需要找到圆心漂移量，进行补偿\cite{drift}。
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{figs/dc_removal.jpg}
 	\caption{带积分漂移的磁链轨迹}
 	\label{fig:dc_removal}
 \end{figure}
-根据图中4个点$P，Q，T，S$将带漂移的矢量$\overrightarrow{\lambda}_{L}$将漂移量求出，这四个点是磁链矢量轨迹圆最边缘的四点。
+根据图中4个点$P,Q,T,S$将带漂移的矢量$\overrightarrow{\lambda}_{L}$将漂移量求出，这四个点是磁链矢量轨迹圆最边缘的四点。
 \begin{equation}
 DR+jDI=\frac{\lambda_{LR(max)}^{\prime}+\lambda_{LR(min)}^{\prime}}{2}+j\left(\frac{\lambda_{LI(max)}^{\prime}+\lambda_{LI(min)}^{\prime}}{2} \right)
 \end{equation}

@@ -46,7 +46,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 设置页面布局  % page layout
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\RequirePackage[top=2.5cm,bottom=2.5cm,left=2.8cm,right=2.8cm,headsep=1.2cm, includehead,includefoot]{geometry}
+\RequirePackage[top=2.7cm,bottom=3.0cm,left=3.0cm,right=2.5cm,headsep=1.2cm, includehead,includefoot]{geometry}
 
 
 
@@ -109,13 +109,13 @@
 
 % 合乎研究生院的字体字号
 \renewcommand{\normalsize}{\xiaosihao\songti\normalfont} % Normal font size 小四号宋体
-\newcommand{\absorinamecn}{\heiti\xiaosanhao}         % 中文“创新点摘要”字样的字体 font for original abstrac
-\newcommand{\absnamecn}{\heiti\xiaosanhao}         % 中文“摘要”字样的字体 font for chinese abstract
+\newcommand{\absorinamecn}{\heiti\sanhao}         % 中文“创新点摘要”字样的字体 font for original abstrac
+\newcommand{\absnamecn}{\heiti\sanhao}         % 中文“摘要”字样的字体 font for chinese abstract
 \newcommand{\abskeycn}{\bfseries\heiti\xiaosihao}       % 中文摘要“关键字”字样的字体 font for chinese keywords "关键字"
-\newcommand{\abskeyscn}{\bfseries\heiti\xiaosihao} % 中文摘要关键字的字体 font for english abstract 
+\newcommand{\abskeyscn}{\songti\xiaosihao} % 中文摘要关键字的字体 font for english abstract 
 \newcommand{\absnameen}{\bfseries\heiti\xiaosanhao} % 英文``Abstract''字样的字体  font for enligsh abstract
 \newcommand{\abskeyen}{\bfseries\xiaosihao}   % 英文``KEY WORDS''字样的字体 font for english keyword "ABSTRACT"
-\newcommand{\abskeysen}{\bfseries\xiaosihao}        % 英文关键字的字体 font for english keywords
+\newcommand{\abskeysen}{\xiaosihao}        % 英文关键字的字体 font for english keywords
 \newcommand{\headfont}{\songti\wuhao\normalfont} 	% 页眉字体 font for header
 \newcommand{\pagefont}{\songti\wuhao\normalfont} 	% 页码字体 font for page number
 \newcommand{\toctitlefont}{\heiti\xiaoerhao}            % “目录”字样的字体 font for "目录"
@@ -124,7 +124,7 @@
 \newcommand{\tocsubsectionfont}{\normalsize}      % 目录上X.Y.Z小节的字体 font for the third level title in toc
 \newcommand{\tocsubsubsectionfont}{\normalsize}      % 目录上X.Y.Z小节的字体 font for the fourth level title in toc
 \newcommand{\textchapterfont}{\centering\heiti\sanhao} % 正文上第X章的字体 font for the first level title 
-\newcommand{\textsectionfont}{\heiti\sihao}            % 正文上X.Y节的字体 font for the second level title 
+\newcommand{\textsectionfont}{\heiti\xiaosihao}            % 正文上X.Y节的字体 font for the second level title 
 \newcommand{\textsubsectionfont}{\heiti\xiaosihao}     % 正文上X.Y.Z小节的字体 font for the third level title 
 \newcommand{\textsubsubsectionfont}{\heiti\xiaosihao}     % 正文上X.Y.Z.K小节的字体 font for the fourth level title
 \newcommand{\footnotefont}{\songti\xiaowuhao\normalfont}     % 脚注字体 font for the footer
@@ -280,7 +280,7 @@
 \RequirePackage{titletoc} % 设置目录
 \renewcommand\contentsname{\centerline{\toctitlefont{目\quad {}录}}}
 \titlecontents{chapter}[0ex]{\tocchapterfont}{%
-    第{\thecontentslabel}章\quad {}}{}{%
+    第{\CJKnumber{\thecontentslabel}}章\quad {}}{}{%
     \hspace{.5em}\titlerule*[5pt]{$\cdot$}\contentspage}%
 \titlecontents{section}[1em]{\tocsectionfont}{%
     \thecontentslabel\quad {}}{}{%
@@ -301,18 +301,18 @@
 %%%%%%%%%%%%%%%%%%
 % Text style
 \RequirePackage[pagestyles, rm]{titlesec}%调用titlesec涵盖fancyhdr的功能
-\renewcommand{\chaptername}{第{\thechapter}章}
-\titleformat{\chapter}[hang]{\textchapterfont}{第{\thechapter}章}{1em}{}
+\renewcommand{\chaptername}{第{\CJKnumber{\thechapter}}章}
+\titleformat{\chapter}[hang]{\textchapterfont}{第{\CJKnumber{\thechapter}章}}{1em}{}
 \titleformat{\section}[hang]{\textsectionfont}{\thesection}{1em}{}
 \titleformat{\subsection}[hang]{\textsubsectionfont}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}[hang]{\textsubsubsectionfont}{\thesubsubsection}{1ex}{}% 小四黑体居左
 
 
 \setlength{\parskip}{0ex}% 正文段前段后距：无空行
-\titlespacing{\chapter}{0pt}{-0.9cm}{0mm} % 缩短章标题上间距
-\titlespacing*{\section}{0pt}{-2pt}{.0ex plus .0ex minus .2ex} % 标题间距
-\titlespacing{\subsection}{0pt}{0pt}{.3ex plus .3ex minus .2ex} 
-\titlespacing{\subsubsection}{0pt}{0pt}{.6ex plus .2ex minus .2ex} 
+\titlespacing{\chapter}{0pt}{-0.9cm}{0.4mm} % 缩短章标题上间距
+\titlespacing*{\section}{0pt}{0.4cm}{0.4cm} % 标题间距
+\titlespacing{\subsection}{0pt}{0.4cm}{0.4cm} 
+\titlespacing{\subsubsection}{0pt}{0.4cm}{0.4cm} 
 
 
 \newcommand{\linespacing}[1]{\linespread{#1}\selectfont}% 行距命令
@@ -403,7 +403,7 @@
 
 \newcommand\cnabstract{
 	\pagestyle{cnabstractstyle}  %  摘要之前的部分不需要页码
-    \myclearpage
+    %\myclearpage
     \pagenumbering{Roman}% Roman style page number
     \let\ps@plain=\ps@cnabstractstyle
     \pagestyle{cnabstractstyle}
@@ -412,7 +412,7 @@
 
 \newcommand\enabstract{
 	\pagestyle{enabstractstyle}  %  摘要之前的部分不需要页码
-    \myclearpage
+    %\myclearpage
     \pagenumbering{Roman}% Roman style page number
     \let\ps@plain=\ps@enabstractstyle
     \pagestyle{enabstractstyle}
@@ -421,7 +421,7 @@
 
 \newcommand\tableofcontentmatter{
 	\pagestyle{tocstyle}  %  摘要之前的部分不需要页码
-    \myclearpage
+    %\myclearpage
     \pagenumbering{Roman}% Roman style page number
     \let\ps@plain=\ps@tocstyle
     \pagestyle{tocstyle}
@@ -506,14 +506,14 @@
 \newenvironment{abstractEn}
 {
   \chapter*{\textbf{ABSTRACT}}
-  %\vspace{1em}
+  \vspace{1em}
   %\addcontentsline{toc}{chapter}{Abstract} % 
 }{
 }
 
 \newcommand{\keywordsEn}[1]{%
   \par
- %\vspace{1em}
+  \vspace{1em}
   {\noindent\abskeyen Keywords:} {\abskeysen #1} % \noindent去掉缩进 
   %\myclearpage 
 }

@@ -28,7 +28,7 @@
 +
 \frac d{dt} \begin{bmatrix}\lambda_{a}\\\lambda_{b}\\\lambda_{c}\end{bmatrix}
 \end{equation} 
-\ref{eq:voltage}中$v_{a}，v_{b}，v_{c}$分别表示定子三相电压，R代表定子电阻，$\lambda_{a}，\lambda_{b}，\lambda_{c}$代表三相绕组磁链。永磁同步电机中三相绕组磁链可以表示为:
+\ref{eq:voltage}中$v_{a},v_{b},v_{c}$分别表示定子三相电压，R代表定子电阻，$\lambda_{a},\lambda_{b},\lambda_{c}$代表三相绕组磁链。永磁同步电机中三相绕组磁链可以表示为:
 \begin{equation}
 \begin{bmatrix}\label{eq:flux}
 \lambda_{a}\\\lambda_{b}\\\lambda_{c}\end{bmatrix}=\begin{bmatrix}
@@ -37,12 +37,11 @@ L_{aa}&M_{ab}&M_{ac}\\M_{ab}&L_{bb}&M_{bc}\\M_{ac}&M_{bc}&L_{cc}
 \begin{bmatrix}
 i_{a}\\i_{b}\\i_{c}
 \end{bmatrix}
-+\begin{bmatrix}\lambda_{pm，a}\\\lambda_{pm，b}\\\lambda_{pm，c}\end{bmatrix}
++\begin{bmatrix}\lambda_{pm,a}\\\lambda_{pm,b}\\\lambda_{pm,c}\end{bmatrix}
 \end{equation}
-其中$L_{aa}$，$L_{bb}$，$L_{cc}$分别表示定子三相绕组自感，$M_{ab}$，$M_{ac}$，$M_{bc}$分别表示ab，ac，bc两相绕组互感。
-根据\ref{fig:PMSM}，可以得到转子永磁体在三相绕组产生的磁链为转子电角度$\theta_{r}$的函数:
+其中$L_{aa}$，$L_{bb}$，$L_{cc}$分别表示定子三相绕组自感，$M_{ab}$，$M_{ac}$，$M_{bc}$分别表示ab，ac，bc两相绕组互感,转子永磁体在三相绕组产生的磁链为转子电角度$\theta_{r}$的函数:
 \begin{equation}\label{eq:flux1}
-\begin{bmatrix}\lambda_{pm，a}\\\lambda_{pm，b}\\\lambda_{pm，c}\end{bmatrix}
+\begin{bmatrix}\lambda_{pm,a}\\\lambda_{pm,b}\\\lambda_{pm,c}\end{bmatrix}
 =
 \lambda_{mpm}\begin{bmatrix}\cos(\theta_{r})\\\cos(\theta_{r}-120^{o})\\\cos(\theta_{r}+120^{o})\end{bmatrix} 
 \end{equation}
@@ -61,7 +60,7 @@ i_{a}\\i_{b}\\i_{c}
 +
 \lambda_{mpm}\begin{bmatrix}\cos(\theta_{r})\\\cos(\theta_{r}-120^{o})\\\cos(\theta_{r}+120^{o})\end{bmatrix}
 \end{equation}
-其中，$\lambda_{mpm}$为转子永磁体在定子上产生相磁链的最大值。由于电机转子位置不同影响电机磁路结构，电机电感参数随着转子位置的改变而改变，这些参数计算是电机建模的重要部分，传统方法采用对空间磁密积分的方法\cite{krause2013analysis}求电感参数，较为繁琐。\cite{lu2011simple}提出了一种基于矢量投影的求取电机中电感参数的方法，可以比较方便的计算电感参数。
+其中，$\lambda_{mpm}$为转子永磁体在定子上产生相磁链的最大值。由于电机转子位置不同影响电机磁路结构，电机电感参数随着转子位置的改变而改变，这些参数计算是电机建模的重要部分，传统方法采用对空间磁密积分的方法\cite{krause2013analysis}求电感参数，较为繁琐。文献\cite{lu2011simple}提出了一种基于矢量投影的求取电机中电感参数的方法，可以比较方便的计算电感参数。
 式\ref{eq:flux}中三相绕组自感参数可以表示为：
 \begin{align}
 L_{aa}&= L_{\sigma}+L_{A}-L_{B}\cos(2\theta_{r})\label{eq:Laa}\\
