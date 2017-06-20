@@ -1,6 +1,5 @@
 
 \chapter{永磁同步电机数学模型}\label{ch:model}
-\section{引言}
 本章主要介绍永磁同步电机的数学模型。永磁同步电机的数学模型是矢量控制的重要基础。本章先介绍了永磁同步电机结构特点，然后介绍了在不同坐标系下的电机动态方程，为矢量后续章节的矢量控制打下基础。
 
 \section{永磁同步电机建模}
@@ -60,7 +59,7 @@ i_{a}\\i_{b}\\i_{c}
 +
 \lambda_{mpm}\begin{bmatrix}\cos(\theta_{r})\\\cos(\theta_{r}-120^{o})\\\cos(\theta_{r}+120^{o})\end{bmatrix}
 \end{equation}
-其中，$\lambda_{mpm}$为转子永磁体在定子上产生相磁链的最大值。由于电机转子位置不同影响电机磁路结构，电机电感参数随着转子位置的改变而改变，这些参数计算是电机建模的重要部分，传统方法采用对空间磁密积分的方法\cite{krause2013analysis}求电感参数，较为繁琐。文献\cite{lu2011simple}提出了一种基于矢量投影的求取电机中电感参数的方法，可以比较方便的计算电感参数。
+其中，$\lambda_{mpm}$为转子永磁体在定子上产生相磁链的最大值。由于电机转子位置不同影响电机磁路结构，电机电感参数随着转子位置的改变而改变，这些参数计算是电机建模的重要部分，传统方法采用对空间磁密积分的方法\upcite{krause2013analysis}求电感参数，较为繁琐。文献\upcite{lu2011simple}提出了一种基于矢量投影的求取电机中电感参数的方法，可以比较方便的计算电感参数。
 式\ref{eq:flux}中三相绕组自感参数可以表示为：
 \begin{align}
 L_{aa}&= L_{\sigma}+L_{A}-L_{B}\cos(2\theta_{r})\label{eq:Laa}\\
@@ -81,7 +80,7 @@ M_{bc}&=-\frac{1}{2}L_{A}-L_{B}\cos2(\theta_{r})\label{eq:Mbc}
 \end{align}
 上结果可以看出，静止abc参考下的数学模型由于电机电感参数随着转子位置的改变十分复杂，不利于分析。
 \section{$\alpha\beta$坐标电机模型}\label{sec:model}
-为了方便分析，通常采用坐标变换的方法简化电机数学模型，坐标变换的实质在于变量代换，通过变量代换降低描述电机微分方程的复杂度\cite{reference_frame}。常用的坐标变换为$\alpha\beta$变换和$dq$变换。
+为了方便分析，通常采用坐标变换的方法简化电机数学模型，坐标变换的实质在于变量代换，通过变量代换降低描述电机微分方程的复杂度\upcite{reference_frame}。常用的坐标变换为$\alpha\beta$变换和$dq$变换。
 \subsection{$\alpha\beta$变换}
 $\alpha\beta$变换是将三相坐标的量等效为两相静止坐标上。将三相电压看成一个空间矢量，其三个分量分别在abc轴上，abc互隔$120^{o}$。该空间矢量可以在一个垂直坐标系中表示。如图\ref{fig:alphabeta}所示，$\alpha$轴与a轴重合，$\beta$轴与$\alpha$垂直。
 \begin{figure}[H]

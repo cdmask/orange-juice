@@ -1,5 +1,4 @@
 \chapter{永磁同步电机矢量控制实验}
-\section{引言}
 在掌握永磁同步电机矢量控制基本原理的基础上，搭建了永磁同步电机矢量控制实验平台，并进行实验验证矢量控制算法。本章主要介绍永磁同步电机矢量控制实验平台与实验结果，实验平台基于dSPACE搭建，主要包括有永磁同步电机、变频器、电压电流采样模块、光电转换模块以及驱动器保护卡。
 \section{永磁同步电机矢量控制实验平台}
 
@@ -7,7 +6,7 @@
 dSPACE是德国dSPACE公司开发的硬件在环仿真平台，用户通过使用Matlab/Simukink搭建控制算法，一键生成代码，载入dSPACE内置的dsp控制器中，无需编写或只需要编写少量代码，十分快捷方便。利用ControlDesk软件的在线调试功能，用户可以修改算法中的任意变量，无需重新编译载入，此外ControlDesk提供了多种虚拟仪器以及触发功能，可以实时观看算法中任意变量的波形，捕捉动态响应。
 
 电机控制控制器的设计研究是一项比较复杂的工作，往往需要根据实际运行情况调整控制参数。 dSPACE快速控制原型构造简单、通过ControlDesk在线调
-试调整参数十分方便，非常适合进行电机控制算法研究工作\cite{_dspacesvpwm_2015,_dspace_2011}。
+试调整参数十分方便，非常适合进行电机控制算法研究工作\upcite{_dspacesvpwm_2015,_dspace_2011}。
 \subsection{系统实验平台框图}
 如图\ref{fig:system}所示为永磁同步电机矢量控制实验平台框图，通过该框图可知，该矢量控制实验平台硬件主要包括PC机、dSPACE、变频器、直流电源、光电转换卡和电机，软件主要包括Simulink和ControlDesk。
 \begin{figure}[H]
@@ -48,7 +47,7 @@ dSPACE是德国dSPACE公司开发的硬件在环仿真平台，用户通过使�
 	\caption{直流电压源}
 	\label{fig:dc_source}
 \end{figure}
-图\ref{fig:motor}为永磁同步电机与磁力丝杆负载。磁力丝杆\cite{MLS_for_wave,wang_analysis_2011,holm_design_2013}跟传统的机械丝杆类似，可以实现直线运动和旋转运动相互转换。该系统中永磁同步电机的转子通过齿轮与磁力丝杆的转子相耦合。
+图\ref{fig:motor}为永磁同步电机与磁力丝杆负载。磁力丝杆\upcite{MLS_for_wave,wang_analysis_2011,holm_design_2013}跟传统的机械丝杆类似，可以实现直线运动和旋转运动相互转换。该系统中永磁同步电机的转子通过齿轮与磁力丝杆的转子相耦合。
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{figs/motor.jpg}
